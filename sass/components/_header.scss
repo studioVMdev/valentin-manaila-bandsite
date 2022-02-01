@@ -1,0 +1,75 @@
+@use "../utils/" as *;
+
+.nav {
+	box-sizing: border-box;
+	background-color: $clr-primary-dark;
+	min-height: 7.2rem;
+
+	@include media-tablet {
+		@include flex(flex-start);
+		align-items: stretch;
+	}
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+
+		@include media-tablet {
+			@include flex;
+			justify-content: flex-start;
+			align-items: stretch;
+		}
+	}
+
+	&__logo {
+		padding: 1.6rem 0;
+		margin: auto;
+
+		@include media-tablet {
+		}
+	}
+
+	&__list {
+		display: flex;
+		justify-content: flex-start;
+		// height: 100%;
+	}
+
+	&__list-item {
+		width: 50vw;
+		margin: auto;
+		@include media-tablet {
+			width: 100%;
+			padding-left: 4.8rem;
+			height: 100%;
+			margin: auto 0;
+		}
+	}
+
+	&__link {
+		@include font-body-copy;
+		color: $clr-primary-light;
+		@include flex;
+		width: 100%;
+		padding-bottom: 1rem;
+		position: relative;
+		&--highlight {
+			font-family: "AvenirDemi";
+		}
+		@include media-tablet {
+			height: 100%;
+			padding: 0 0;
+		}
+	}
+}
+
+.nav__link--highlight::after {
+	content: "";
+	width: 100%;
+	position: absolute;
+	top: calc(100% - 0.4rem);
+	border-bottom: 0.4rem solid
+		$clr-primary-light;
+	z-index: 3;
+	// height: 100%;
+}

@@ -1,0 +1,48 @@
+@use "../utils/variables" as *;
+@use "../utils/mixins" as *;
+
+@font-face {
+	font-family: "AvenirRegular";
+	src: url("../../assets/font/AvenirNextLTPro-Regular.otf");
+	font-style: normal;
+	font-weight: 400;
+}
+@font-face {
+	font-family: "AvenirDemi";
+	src: url("../../assets/font/AvenirNextLTPro-Demi.otf");
+	font-style: normal;
+	font-weight: 600;
+}
+@font-face {
+	font-family: "AvenirBold";
+	src: url("../../assets/font/AvenirNextLTPro-Bold.otf");
+	font-style: bold;
+	font-weight: 700;
+}
+
+:root {
+	font-family: "AvenirRegular", Arial,
+		Helvetica, sans-serif;
+	font-size: 0.625rem;
+	/* convert rem from default 16px to base 10 e.g. 1rem = 10px*/
+}
+
+h1, .font-page-header {
+	@include font-page-header;
+}
+
+h2,
+section .font-section-header {
+	@include font-section-header;
+}
+
+h3,
+.font-sub-header {
+	@include font-sub-header;
+}
+
+p,
+.font-body-copy {
+	@include font-body-copy;
+}
+

@@ -1,0 +1,79 @@
+@use "../utils/" as *;
+
+.footer {
+	background-color: $clr-primary-dark;
+	&__social-container {
+		@include flex;
+		justify-content: space-between;
+	}
+	&__social-wrapper {
+		@include flex(
+			flex-start,
+			flex-start,
+			column
+		);
+		@include media-tablet {
+			@include flex;
+		}
+	}
+
+	&__social-heading {
+		@include font-section-header;
+    @include flex;
+    align-items: stretch;
+		@include padding-v-headline;
+		color: $clr-primary-light;
+	}
+	&__icons-wrapper {
+		@include flex;
+		gap: 3.2rem;
+		@include media-tablet {
+		padding-left: 3.2rem;
+    }
+	}
+	&__icon {
+		min-height:2.8rem;
+		width: auto;
+	}
+	&__logo-top {
+		display: none;
+		@include media-tablet {
+			display: block;
+			justify-self: flex-end;
+		}
+	}
+
+  &__contacts-wrapper{
+    @include flex(center, flex-start, column);
+    @include media-tablet {
+      @include flex(space-between);
+    }
+  }
+
+	&__contact-name {
+		@include font-footer-copy;
+		color: $clr-primary-light;
+		font-family: "AvenirBold";
+	}
+
+	&__contact-address,
+	&__contact-email {
+		@include font-footer-copy;
+		color: $clr-primary-light;
+	}
+
+	&__logo-bottom {
+		margin-top: 6.4rem;
+		@include media-tablet {
+			display: none;
+		}
+	}
+	&__copyright {
+		@include font-footer-copy;
+		color: $clr-primary-light;
+		padding: 1.6rem 0;
+    @include media-tablet{
+      padding: 2.4rem 0;
+    }
+	}
+}

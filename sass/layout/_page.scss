@@ -1,0 +1,29 @@
+@use "../utils/" as *;
+
+.nav__container,
+.hero__container,
+.about__container,
+.gallery__container,
+.footer__container {
+	margin: 0 auto;
+	padding: 0 1.6rem;
+}
+
+@include media-tablet {
+	.nav__container,
+	.hero__container,
+	.about__container,
+	.gallery__container,
+	.footer__container {
+		padding: 0 3.6rem;
+		margin: 0 auto;
+		max-width: 102rem;
+    @include media-desktop{
+      padding: 0 6.3rem;
+    }
+	}
+}
+
+.gallery {
+	background-color: $clr-secondary-light;
+}
