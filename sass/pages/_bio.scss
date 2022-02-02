@@ -1,9 +1,11 @@
-@use "../utils" as *;
+@use "../utils/index" as *;
 
 // BIO page specific styles
 
 .hero {
 	position: relative;
+	max-width: 128rem;
+	margin: 0 auto;
 
 	&__background {
 		width: 100%;
@@ -20,8 +22,11 @@
 	}
 
 	&__heading {
+		padding: 0;
 		position: absolute;
-		top: calc(50% - 1.2rem);
+		top: 50%;
+		transform: translateY(-50%);
+		margin: auto 0;
 		color: $clr-primary-light;
 		z-index: 2;
 	}
@@ -50,21 +55,30 @@
 		}
 	}
 	&__bio-wrapper {
-    @include flex(center, center, column);
-    gap: 1.6rem;
+		@include flex(
+			center,
+			center,
+			column
+		);
+		gap: 1.6rem;
+		padding-bottom: 1.6rem;
 		@include media-tablet {
 			@include flex;
 			gap: 2.4rem;
+			padding-bottom: 2.4rem;
 		}
+	}
+
+	&__bio-description {
+		@include font-body-copy;
 	}
 }
 
 .gallery {
+	background-color: $clr-secondary-light;
+
 	&__heading {
 		@include font-section-header;
-		@include padding-v-headline;
-		color: $clr-primary-dark;
-		// width: 100%;
 	}
 	&__wrapper {
 		display: grid;
@@ -73,6 +87,7 @@
 		margin-bottom: 1.6rem;
 		@include media-tablet {
 			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-rows: 1fr 1fr 1fr;
 			gap: 2.4rem;
 			margin-bottom: 3.6rem;
 		}
@@ -80,5 +95,11 @@
 
 	&__image {
 		width: 100%;
+		filter: grayscale(100%);
+		filter: gray;
+
+		&:hover {
+			filter: none;
+		}
 	}
 }

@@ -3,8 +3,7 @@
 .footer {
 	background-color: $clr-primary-dark;
 	&__social-container {
-		@include flex;
-		justify-content: space-between;
+		@include flex(space-between);
 	}
 	&__social-wrapper {
 		@include flex(
@@ -19,9 +18,7 @@
 
 	&__social-heading {
 		@include font-section-header;
-    @include flex;
-    align-items: stretch;
-		@include padding-v-headline;
+    @include flex(center, stretch);
 		color: $clr-primary-light;
 	}
 	&__icons-wrapper {
@@ -39,7 +36,6 @@
 		display: none;
 		@include media-tablet {
 			display: block;
-			justify-self: flex-end;
 		}
 	}
 
@@ -68,6 +64,7 @@
 			display: none;
 		}
 	}
+  
 	&__copyright {
 		@include font-footer-copy;
 		color: $clr-primary-light;

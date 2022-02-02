@@ -1,5 +1,4 @@
-@use "../utils/variables" as *;
-@use "../utils/mixins" as *;
+@use "../utils" as *;
 
 @font-face {
 	font-family: "AvenirRegular";
@@ -23,11 +22,13 @@
 :root {
 	font-family: "AvenirRegular", Arial,
 		Helvetica, sans-serif;
+	color: $clr-secondary-dark;
 	font-size: 0.625rem;
 	/* convert rem from default 16px to base 10 e.g. 1rem = 10px*/
 }
 
-h1, .font-page-header {
+h1,
+.font-page-header {
 	@include font-page-header;
 }
 
@@ -45,4 +46,3 @@ p,
 .font-body-copy {
 	@include font-body-copy;
 }
-

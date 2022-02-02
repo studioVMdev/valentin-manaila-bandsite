@@ -4,35 +4,34 @@
 	box-sizing: border-box;
 	background-color: $clr-primary-dark;
 	min-height: 7.2rem;
-
+	width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  
 	@include media-tablet {
-		@include flex(flex-start);
-		align-items: stretch;
+    @include flex(flex-start, stretch);
 	}
 
 	&__container {
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 
 		@include media-tablet {
-			@include flex;
+			flex-direction: row;
 			justify-content: flex-start;
-			align-items: stretch;
 		}
 	}
 
 	&__logo {
 		padding: 1.6rem 0;
-		margin: auto;
-
-		@include media-tablet {
-		}
+		text-align: center;
+		margin: auto 0;
 	}
 
 	&__list {
-		display: flex;
-		justify-content: flex-start;
-		// height: 100%;
+    @include flex(flex-start);
 	}
 
 	&__list-item {
@@ -53,23 +52,37 @@
 		width: 100%;
 		padding-bottom: 1rem;
 		position: relative;
+
 		&--highlight {
 			font-family: "AvenirDemi";
+
+			&::after {
+				content: "";
+				width: 100%;
+				position: absolute;
+				top: calc(100% - 0.4rem);
+				border-bottom: 0.4rem solid
+					$clr-primary-light;
+				z-index: 3;
+			}
 		}
+
+		&:not(.nav__link--highlight):hover {
+			color: $clr-primary-medium;
+			&::after {
+				content: "";
+				width: 100%;
+				position: absolute;
+				top: calc(100% - 0.2rem);
+				border-bottom: 0.2rem solid
+					$clr-primary-medium;
+				z-index: 3;
+			}
+		}
+
 		@include media-tablet {
 			height: 100%;
 			padding: 0 0;
 		}
 	}
-}
-
-.nav__link--highlight::after {
-	content: "";
-	width: 100%;
-	position: absolute;
-	top: calc(100% - 0.4rem);
-	border-bottom: 0.4rem solid
-		$clr-primary-light;
-	z-index: 3;
-	// height: 100%;
 }
