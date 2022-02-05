@@ -13,7 +13,7 @@
 .about__container,
 .gallery__container,
 .footer__container {
-  max-width: 102rem;
+	max-width: 102rem;
 	@include media-tablet {
 		padding: 0 3.6rem;
 		margin: 0 auto;
@@ -23,3 +23,28 @@
 	}
 }
 
+.screen-size {
+	position: fixed;
+	background-color: yellow;
+	height: 100vh;
+	max-width: 10rem;
+	top: 0;
+	left: 0;
+	z-index: 20;
+	@include flex(center, center, column);
+	transition: transform 1000ms ease-in-out;
+	transform: translateX(-100%);
+
+	&--show {
+		transition: transform 1000ms ease-in-out;
+		transform: translateX(0%);
+	}
+
+	&__message {
+		@include font-sub-header;
+		color: $clr-primary-dark;
+		width: max-content;
+		transform: rotate(-90deg);
+		overflow: visible;
+	}
+}

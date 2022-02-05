@@ -8,18 +8,8 @@
   /* convert rem from default 16px to base 10 e.g. 1rem = 10px*/
 }
 
-html, body, div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code,
-del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var,
-b, i,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video, ::after, ::before {
+html, body, div, img,
+footer, header, menu, nav, section, ::after, ::before {
   margin: 0;
   padding: 0;
   border: 0;
@@ -169,6 +159,44 @@ p,
   }
 }
 
+.screen-size {
+  position: fixed;
+  background-color: yellow;
+  height: 100vh;
+  max-width: 10rem;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 1000ms ease-in-out;
+  transform: translateX(-100%);
+}
+.screen-size--show {
+  transition: transform 1000ms ease-in-out;
+  transform: translateX(0%);
+}
+.screen-size__message {
+  font-size: 1.5rem;
+  line-height: 2.2rem;
+  font-family: "AvenirDemi";
+  margin: 1.6rem 0;
+  color: #323232;
+  width: max-content;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+@media only screen and (min-width: 768px) {
+  .screen-size__message {
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    font-family: "AvenirDemi";
+    margin: 2.4rem 0;
+  }
+}
+
 .nav {
   box-sizing: border-box;
   background-color: #323232;
@@ -176,7 +204,7 @@ p,
   width: 100%;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 10;
 }
 @media only screen and (min-width: 768px) {
   .nav {
@@ -224,11 +252,11 @@ p,
   font-size: 1.3rem;
   line-height: 1.8rem;
   font-family: "AvenirRegular";
-  color: #FFF;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  color: #AFAFAF;
   width: 100%;
   padding-bottom: 1rem;
   position: relative;
@@ -241,6 +269,7 @@ p,
   }
 }
 .nav__link--highlight {
+  color: #FFF;
   font-family: "AvenirDemi";
 }
 .nav__link--highlight::after {
@@ -252,14 +281,14 @@ p,
   z-index: 3;
 }
 .nav__link:not(.nav__link--highlight):hover {
-  color: #AFAFAF;
+  color: #FFF;
 }
 .nav__link:not(.nav__link--highlight):hover::after {
   content: "";
   width: 100%;
   position: absolute;
-  top: calc(100% - 0.2rem);
-  border-bottom: 0.2rem solid #AFAFAF;
+  top: calc(100% - 0.4rem);
+  border-bottom: 0.4rem solid #FFF;
   z-index: 3;
 }
 @media only screen and (min-width: 768px) {

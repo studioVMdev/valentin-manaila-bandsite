@@ -7,7 +7,7 @@
 	width: 100%;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 10;
   
 	@include media-tablet {
     @include flex(flex-start, stretch);
@@ -47,13 +47,14 @@
 
 	&__link {
 		@include font-body-copy;
-		color: $clr-primary-light;
 		@include flex;
+    color: $clr-secondary-medium;
 		width: 100%;
 		padding-bottom: 1rem;
 		position: relative;
-
+    
 		&--highlight {
+      color: $clr-primary-light;
 			font-family: "AvenirDemi";
 
 			&::after {
@@ -68,14 +69,14 @@
 		}
 
 		&:not(.nav__link--highlight):hover {
-			color: $clr-primary-medium;
+			color: $clr-primary-light;
 			&::after {
 				content: "";
 				width: 100%;
 				position: absolute;
-				top: calc(100% - 0.2rem);
-				border-bottom: 0.2rem solid
-					$clr-primary-medium;
+				top: calc(100% - 0.4rem);
+				border-bottom: 0.4rem solid
+					$clr-primary-light;
 				z-index: 3;
 			}
 		}
