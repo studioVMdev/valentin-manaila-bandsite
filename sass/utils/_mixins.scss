@@ -30,26 +30,26 @@
 @mixin font-section-header {
 	font-size: 2.4rem;
 	line-height: 3.2rem;
-	font-family: "AvenirBold";
+	font-family: "AvenirDemi";
 	@include padding-v-headline;
 
 	@include media-tablet {
 		font-size: 3.6rem;
 		line-height: 4.4rem;
-		font-family: "AvenirBold";
+		font-family: "AvenirDemi";
 	}
 }
 
 @mixin font-sub-header {
 	font-size: 1.5rem;
 	line-height: 2.2rem;
-	font-family: "AvenirDemi";
+	font-family: "AvenirRegular";
 	margin: 1.6rem 0;
 
 	@include media-tablet {
 		font-size: 2.4rem;
 		line-height: 3.2rem;
-		font-family: "AvenirDemi";
+		font-family: "AvenirRegular";
 		margin: 2.4rem 0;
 	}
 }
