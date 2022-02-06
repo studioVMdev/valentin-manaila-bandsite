@@ -42,7 +42,8 @@
   &__contacts-wrapper{
     @include flex(center, flex-start, column);
     @include media-tablet {
-      @include flex(space-between);
+      @include flex(flex-start, center);
+      gap: 5.6rem;
     }
   }
 

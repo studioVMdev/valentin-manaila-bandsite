@@ -380,8 +380,9 @@ p,
   .footer__contacts-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 5.6rem;
   }
 }
 .footer__contact-name {
