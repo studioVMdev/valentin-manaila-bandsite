@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./styles/css/style.css">
   <title>Band Site</title>
 </head>
 <body>
@@ -14,7 +14,7 @@
         <a class="nav__logo" href="./index.html"><img src="./assets/logo/Logo-bandsite.svg" alt="bees knees logo"></a>
         <ul class="nav__list">
           <li class="nav__list-item "><a class="nav__link nav__link--highlight" href="./index.html">Biography</a></li>
-          <li class="nav__list-item"><a class="nav__link" href="#">Shows</a></li>
+          <li class="nav__list-item"><a class="nav__link" href="./pages/shows.html">Shows</a></li>
         </ul>
       </nav>
     </header>
@@ -23,7 +23,9 @@
       <img class="hero__background" src="./assets/images/hero-bio.jpg" alt="bee and flowers background">
       <div class="hero__overlay"></div>
       <div class="hero__container">
-        <h1 class="hero__heading">The Bees Knees</h1>
+        <div class="hero__content-wrapper">        
+          <h1 class="hero__heading">The Bees Knees</h1>
+        </div>
       </div>
     </section>
     <!-- ABOUT------- -->
@@ -64,6 +66,36 @@
         </div>
       </div>
     </section>
+    <!-- COMMENTS------- -->
+    <section class="comments">
+      <div class="comments__container">
+        <h1 class="comments__heading">Join the Conversation</h1>
+        <div class="comments__wrapper">
+          <div class="form">
+            <img src="./assets/images/Mohan-muruge.jpg" alt="user image" class="form__icon avatar">
+            <div class="form__wrapper">
+              <label for="form__name" class="form__label">NAME</label>
+              <input type="text" id="form__name" class="form__input form__input--error" placeholder="Enter your name">
+              <label for="form__comment" class="form__label">COMMENT</label>
+              <textarea class="form__input form__comment" name="form__comment" id="form__comment" cols="30" rows="12" placeholder="Add a new comment"></textarea>
+              <button type="submit" class="form__button button">COMMENT</button>
+            </div>
+          </div>
+
+          <!-- <div class="comment" data-id="">
+            <img class="comment__icon avatar">
+            <div class="comment__wrapper">
+              <div class="comment__head">
+                <p class="comment__user-name">Connor Walton</p>
+                <p class="comment__time-stamp">02/17/2021</p>
+              </div>
+              <p class="comment__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus laudantium, corporis labore facilis cum ut. Quia quaerat culpa beatae? Magni!</p>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+    </section>
     <!-- FOOTER------- -->
     <footer class="footer">
       <div class="footer__container">
@@ -72,9 +104,9 @@
           <div class="footer__social-wrapper">
             <h1 class="footer__social-heading">Get in Touch</h1>
             <div class="footer__icons-wrapper">
-              <img src="./assets/icons/SVG/Icon-instagram.svg" alt="instagram logo" class="footer__icon">
-              <img src="./assets/icons/SVG/Icon-facebook.svg" alt="facebook logo" class="footer__icon">
-              <img src="./assets/icons/SVG/Icon-twitter.svg" alt="twitter logo" class="footer__icon">
+              <a href="https://instagram.com" target="_blank"><img src="./assets/icons/SVG/Icon-instagram.svg" alt="instagram logo" class="footer__icon"></a>
+              <a href="https://facebook.com" target="_blank"><img src="./assets/icons/SVG/Icon-facebook.svg" alt="facebook logo" class="footer__icon"></a>
+              <a href="https://twitter.com" target="_blank"><img src="./assets/icons/SVG/Icon-twitter.svg" alt="twitter logo" class="footer__icon"></a>
             </div>
           </div>
           <img class="footer__logo-top" src="./assets/logo/Logo-bandsite.svg" alt="bees knees logo">
@@ -105,6 +137,7 @@
 
       </div>
     </footer>
-    <script src="./app/app.js"></script>
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/index-page.js"></script>
 </body>
 </html>
