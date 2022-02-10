@@ -96,11 +96,11 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 1.6rem;
-		margin-bottom: 1.6rem;
+		// margin-bottom: 1.6rem;
 		@include media-tablet {
 			grid-template-columns: 1fr 1fr 1fr;
 			gap: 2.4rem;
-			margin-bottom: 3.6rem;
+			// margin-bottom: 3.6rem;
 		}
 	}
 
@@ -126,9 +126,9 @@
 	&__wrapper {
 		max-width: 58rem;
 		margin: auto;
-    @include media-desktop{
-      max-width: 50rem;
-    }
+		@include media-desktop {
+			max-width: 58rem;
+		}
 	}
 }
 
@@ -154,7 +154,7 @@
 		color: $clr-primary-dark;
 		@include font-body-copy;
 		padding: 1.2rem;
-		margin-bottom: 2.4rem;
+		margin-bottom: 1.6rem;
 		@include media-tablet {
 			padding: 1.6rem;
 			height: 4.8rem;
@@ -163,14 +163,27 @@
 			@include font-footer-copy;
 			color: $clr-primary-dark;
 		}
-		&:active {
-			// border: 1px solid $clr-primary-dark;
-			// box-shadow: 0 0 1rem $clr-primary-medium;
+		&:focus {
+			border: 1px solid $clr-primary-dark;
+			// background: red;
+			box-shadow: 0 0 0.5rem $clr-primary-medium;
 		}
 		&--error {
 			border: 1px solid $clr-danger;
 			box-shadow: 0 0 0.5rem $clr-danger;
+			// color: red;
 		}
+	}
+
+	&__error {
+    position: relative;
+    top: -1.2rem;
+    color: $clr-danger;
+    font-weight: bold;
+    visibility: hidden;
+    &--show{
+      visibility: visible;
+    }
 	}
 	&__comment {
 		min-height: 10rem;
@@ -190,6 +203,9 @@
 	&__icon {
 		aspect-ratio: 1/1;
 	}
+	&__wrapper {
+		width: 100%;
+	}
 	&__head {
 		@include flex(space-between, center, row);
 	}
@@ -199,6 +215,9 @@
 	&__time-stamp {
 		@include font-body-copy;
 		color: $clr-primary-medium;
+	}
+	&__body {
+		width: fit-content;
 	}
 }
 

@@ -1,77 +1,84 @@
 @use "../utils/index" as *;
 
 .shows {
-  &__container{
-    @include media-desktop{
-      @include flex(space-between, flex-start,row);
-    }
-  }
+	&__container {
+		@include media-desktop {
+			@include flex(space-between, flex-start, row);
+		}
+	}
 
 	&__heading {
 		@include font-section-header;
 	}
 
-  &__wrapper{
-@include media-desktop {
-  padding-top: 5rem;
-  width: 70rem;
-}
-  }
+	&__wrapper {
+		@include media-desktop {
+			padding-top: 5rem;
+			width: 70rem;
+		}
+	}
 
 	&__th-wrapper {
 		display: none;
 		@include media-tablet {
 			display: flex;
-      width: 100%;
-      padding: 1.6rem;
+			width: 100%;
+			padding: 1.6rem;
 		}
 	}
 
 	&__th-cell {
 		@include font-body-copy;
 		color: $clr-primary-medium;
-    @include media-tablet{
-      min-width: 25%;
-    }
+		@include media-tablet {
+			min-width: 25%;
+		}
 	}
 }
 
 .show {
 	@include flex(flex-start, flex-start, column);
-	border-bottom: 1px solid $clr-secondary-medium;
-  width: 100%;
-  padding: 1.6rem 0;
+	border-bottom: 1px solid $clr-primary-medium;
+	width: 100%;
+	padding: 1.6rem 0;
+
+	&:hover {
+		background-color: $clr-secondary-light;
+	}
+
+	&--active {
+		background-color: $clr-secondary-medium;
+	}
+
 	@include media-tablet {
-    padding: 1.6rem;
-    flex-direction: row;
+		padding: 1.6rem;
+		flex-direction: row;
 	}
 
 	&__wrapper {
 		@include flex(flex-start, flex-start, column);
-    padding: 0.8rem 0;
-    @include media-tablet{
-      width: 25%;
-    }
+		padding: 0.8rem 0;
+		@include media-tablet {
+			width: 25%;
+		}
 	}
-  
+
 	&__label {
-    @include font-body-copy;
+		@include font-body-copy;
 		color: $clr-primary-medium;
-    padding: 0.4rem 0;
+		padding: 0.4rem 0;
 		@include media-tablet {
 			display: none;
 		}
 	}
 
-  .date__info {
-    font-family: "AvenirBold";
-  }
+	.date__info {
+		font-family: "AvenirBold";
+	}
 
 	&__info {
 		@include font-body-copy;
 		color: $clr-primary-dark;
 		width: 100%;
 	}
-
-	
 }

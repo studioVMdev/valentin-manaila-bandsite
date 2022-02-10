@@ -23,9 +23,10 @@ const commentsData = [
 ];
 
 // DOM manipulation helper functions
-// 1. Create Element
+// 1. Create Element (element, classnames, parent, atrivbutes)
 const create = (element, classNames, parentEl, attributesObj) => {
 	let htmlElement = document.createElement(element);
+
 	typeof classNames == "string"
 		? htmlElement.classList.add(classNames)
 		: classNames.forEach((classs) => {
@@ -48,9 +49,9 @@ const create = (element, classNames, parentEl, attributesObj) => {
 const select = (element, all = false) => {
 	element = element.trim();
 	if (all) {
-		return [...document.querySelectorAll(el)];
+		return [...document.querySelectorAll(element)];
 	} else {
-		return document.querySelector(el);
+		return document.querySelector(element);
 	}
 };
 
@@ -66,33 +67,105 @@ const on = (type, element, listener, all = false) => {
 	}
 };
 
-const displayComments = (data) => {
-	data.forEach((comment) => {
-		const commentEl = create("div", "comment", null, { "data-idss": 1 });
-		const imgEl = create("img", ["comment__icon", "avatar"], commentEl);
-		const commentWrapperEl = create("div", "comment__wrapper", commentEl);
-		const commentHeadEl = create("div", "comment__head", commentWrapperEl);
-		const commentUserNameEl = create(
-			"p",
-			"comment__user-name",
-			commentHeadEl
-		);
-		commentUserNameEl.innerText = comment.commentName;
-		const commentTimeStampEl = create(
-			"p",
-			"comment__time-stamp",
-			commentHeadEl
-		);
-		commentTimeStampEl.innerText = comment.commentDate;
-		const commentBodyEl = create("p", "comment__body", commentWrapperEl);
-		commentBodyEl.innerText = comment.commentBody;
-		document.querySelector(".comments__wrapper").append(commentEl);
+const loadEventListeners = () => {
+	const formEl = document.getElementById("comments-form");
+	formEl.addEventListener("submit", (e) => {
+		e.preventDefault();
+		submitCommentHandler(e);
 	});
 };
 
+const displayComments = (data) => {
+	data.forEach((obj) => {
+		const commentEl = makeHtmlComment(obj);
+		document.querySelector(".comments__list").append(commentEl);
+	});
+};
+
+const makeCommentObjFromDOMData = () => {
+	const nameInputEl = select("#form__name");
+	const commentInputEl = select("#form__comment");
+	const nameErrorEl = select(".name-error");
+	const commentErrorEl = select(".comment-error");
+
+	const nameVal = nameInputEl.value;
+	const commentVal = commentInputEl.value;
+	const imgSrcVal = select(".form__image").src;
+
+	const dateLong = new Date();
+	const enUSFormatter = new Intl.DateTimeFormat("en-GB");
+	const dateFormatted = enUSFormatter.format(dateLong);
+	const hour = dateLong.getHours();
+	const min = dateLong.getMinutes();
+
+	if (!nameVal) {
+		nameInputEl.classList.add("form__input--error");
+		nameErrorEl.classList.add("form__error--show");
+	} else {
+		nameInputEl.classList.remove("form__input--error");
+		nameErrorEl.classList.remove("form__error--show");
+	}
+
+	if (!commentVal) {
+		commentInputEl.classList.add("form__input--error");
+		commentErrorEl.classList.add("form__error--show");
+	} else {
+		commentInputEl.classList.remove("form__input--error");
+		commentErrorEl.classList.remove("form__error--show");
+  }
+  
+	if (nameVal && commentVal) {
+		const commentObj = {
+			commentImage: imgSrcVal,
+			commentName: nameVal,
+			commentDate: dateFormatted,
+			commentBody: commentVal,
+		};
+
+		nameInputEl.value = "";
+		commentInputEl.value = "";
+
+		// console.log(commentObj);
+
+		commentsData.unshift(commentObj);
+		return commentObj;
+	} else {
+		false;
+	}
+};
+
+//Make HTML Comment function
+const makeHtmlComment = (commentObj) => {
+	const commentEl = create("div", "comment", null, { "data-id": 1 });
+	const imgEl = create("img", ["comment__icon", "avatar"], commentEl);
+	imgEl.setAttribute("src", commentObj.commentImage);
+	const commentWrapperEl = create("div", "comment__wrapper", commentEl);
+	const commentHeadEl = create("div", "comment__head", commentWrapperEl);
+	const commentUserNameEl = create("p", "comment__user-name", commentHeadEl);
+	commentUserNameEl.innerText = commentObj.commentName;
+	const commentTimeStampEl = create("p", "comment__time-stamp", commentHeadEl);
+	commentTimeStampEl.innerText = commentObj.commentDate;
+	const commentBodyEl = create("p", "comment__body", commentWrapperEl);
+	commentBodyEl.innerText = commentObj.commentBody;
+
+	// console.log(commentEl);
+	return commentEl;
+};
+
+// Submit Comment
+const submitCommentHandler = (e) => {
+	// console.log("inside submit handler");
+  const commentsListEl = select(".comments__list");
+  
+  // console.log("inside click handler", commentsListEl);
+  
+	const commentObj = makeCommentObjFromDOMData(e);
+	const commentEl = commentObj && makeHtmlComment(commentObj);
+
+	// console.log("comment el", commentEl);
+	commentEl && commentsListEl.prepend(commentEl);
+};
+
+loadEventListeners();
+
 displayComments(commentsData);
-
-//
-
-//---------------------------
-// console.log(commentEl);

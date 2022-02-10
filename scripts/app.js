@@ -1,3 +1,14 @@
+import { join, dirname } from "path";
+import { Low, JSONFile } from "lowdb";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// Use JSON file for storage
+const file = join(__dirname, "db.json");
+const adapter = new JSONFile(file);
+const db = new Low(adapter);
+
 // Create a vertical banner that appears on screen when screen resolution is above a certain width.
 
 // 1. Create Elements and add classes and content

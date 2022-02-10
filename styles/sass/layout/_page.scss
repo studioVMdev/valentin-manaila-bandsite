@@ -1,13 +1,18 @@
 @use "../utils/" as *;
 
-.hero__container,
+.hero__content-wrapper,
 .shows__container,
 .about__container,
 .gallery__container,
 .comments__container,
 .footer__container {
-	margin: 0 auto;
-	padding: 0 1.6rem;
+  padding: 0 1.6rem 1.6rem 1.6rem;
+  @include media-tablet {
+    padding: 0 2.4rem 2.4rem 2.4rem;
+	}
+	@include media-desktop {
+    padding: 0 3.6rem 3.6rem 3.6rem;
+	}
 }
 
 .nav__container,
@@ -15,19 +20,14 @@
 .shows__container,
 .about__container,
 .comments__container,
-.gallery__container,
-.footer__container {
+.gallery__container ,
+.footer__container{
 	max-width: 102rem;
-  margin: 0 auto;
-  padding-bottom: 1.6rem;
+	margin: 0 auto;
 	@include media-tablet {
-    // border: 2px solid red;
-    margin-bottom: 3.6rem;
-		// padding: 0 3.6rem;		
-	}
-  @include media-desktop {
-			padding: 0 6.3rem;
+		@include media-desktop {
 		}
+	}
 }
 
 .screen-size {

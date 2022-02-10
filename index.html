@@ -69,20 +69,27 @@
     <!-- COMMENTS------- -->
     <section class="comments">
       <div class="comments__container">
+
         <h1 class="comments__heading">Join the Conversation</h1>
         <div class="comments__wrapper">
-          <div class="form">
-            <img src="./assets/images/Mohan-muruge.jpg" alt="user image" class="form__icon avatar">
+          <form class="form" id="comments-form">
+            <img src="./assets/images/Mohan-muruge.jpg" alt="user image" class="form__icon avatar form__image"/>
+
             <div class="form__wrapper">
               <label for="form__name" class="form__label">NAME</label>
-              <input type="text" id="form__name" class="form__input form__input--error" placeholder="Enter your name">
+              <input type="text" name="formName" class="form__input" id="form__name" placeholder="Enter your name">
+              <p class="form__error name-error">Name is Required</p>
               <label for="form__comment" class="form__label">COMMENT</label>
-              <textarea class="form__input form__comment" name="form__comment" id="form__comment" cols="30" rows="12" placeholder="Add a new comment"></textarea>
+              <textarea class="form__input form__comment" id="form__comment" name="formComment" cols="30" rows="12" placeholder="Add a new comment"></textarea>
+              <p class="form__error comment-error">Comment is Required</p>
               <button type="submit" class="form__button button">COMMENT</button>
             </div>
-          </div>
+          </form>
+
+          <div class="comments__list">
 
           <!-- <div class="comment" data-id="">
+
             <img class="comment__icon avatar">
             <div class="comment__wrapper">
               <div class="comment__head">
@@ -91,7 +98,10 @@
               </div>
               <p class="comment__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus laudantium, corporis labore facilis cum ut. Quia quaerat culpa beatae? Magni!</p>
             </div>
+            
           </div> -->
+
+          </div>
 
         </div>
       </div>

@@ -31,3 +31,89 @@ const showsData = [
 		location: "San Francisco, CA",
 	},
 ];
+
+const loadShows = (data) => {
+	let showsWrapperEl = document.querySelector(".shows__wrapper");
+
+	let shows = [];
+
+	for (let i = 0; i < data.length; i++) {
+		const show = data[i];
+
+		const showEl = document.createElement("div");
+		showEl.addEventListener("click", () => {
+			showEl.classList.toggle("show--active");
+		});
+
+		showEl.classList.add("show");
+		showsWrapperEl.appendChild(showEl);
+		//First Cell - DATE
+		const dateWrapperEl = document.createElement("div");
+		dateWrapperEl.classList.add("show__wrapper");
+		dateWrapperEl.classList.add("date__wrapper");
+
+		const dateLabelEl = document.createElement("h4");
+		dateLabelEl.classList.add("show__label");
+		dateLabelEl.classList.add("date__label");
+		dateLabelEl.innerText = "DATE";
+		dateWrapperEl.appendChild(dateLabelEl);
+
+		const dateInfoEl = document.createElement("h4");
+		dateInfoEl.classList.add("show__info");
+		dateInfoEl.classList.add("date__info");
+		dateInfoEl.innerText = show.date;
+		dateWrapperEl.appendChild(dateInfoEl);
+
+		showEl.appendChild(dateWrapperEl);
+
+		//Second Cell - VENUE
+		const venueWrapperEl = document.createElement("div");
+		venueWrapperEl.classList.add("show__wrapper");
+		venueWrapperEl.classList.add("venue__wrapper");
+
+		const venueLabelEl = document.createElement("h4");
+		venueLabelEl.classList.add("show__label");
+		venueLabelEl.classList.add("venue__label");
+		venueLabelEl.innerText = "VENUE";
+		venueWrapperEl.appendChild(venueLabelEl);
+
+		const venueInfoEl = document.createElement("h4");
+		venueInfoEl.classList.add("show__info");
+		venueInfoEl.classList.add("venue__info");
+		venueInfoEl.innerText = show.venue;
+		venueWrapperEl.appendChild(venueInfoEl);
+
+		showEl.appendChild(venueWrapperEl);
+
+		//Third Cell - LOCATION
+		const locationWrapperEl = document.createElement("div");
+		locationWrapperEl.classList.add("show__wrapper");
+		locationWrapperEl.classList.add("location__wrapper");
+
+		const locationLabelEl = document.createElement("h4");
+		locationLabelEl.classList.add("show__label");
+		locationLabelEl.classList.add("location__label");
+		locationLabelEl.innerText = "LOCATION";
+		locationWrapperEl.appendChild(locationLabelEl);
+
+		const locationInfoEl = document.createElement("h4");
+		locationInfoEl.classList.add("show__info");
+		locationInfoEl.classList.add("location__info");
+		locationInfoEl.innerText = show.location;
+		locationWrapperEl.appendChild(locationInfoEl);
+
+		showEl.appendChild(locationWrapperEl);
+		//Fourth Cell - BUTTON
+		const buyButton = document.createElement("button");
+		buyButton.classList.add("show__button");
+		buyButton.classList.add("button");
+		buyButton.classList.add("buy__button");
+		buyButton.innerText = "BUY TICKETS";
+
+		showEl.appendChild(buyButton);
+
+		shows.push(showEl);
+	} //FOR LOOP ENDS HERE
+};
+
+loadShows(showsData);
