@@ -1,50 +1,69 @@
 @use "../utils/index" as *;
 
 // BIO page specific styles
+.hero__shows-background {
+	background: linear-gradient(to top, #32323272, #32323272),
+		url("../../../assets/images/hero-shows.jpg");
+}
+
+.hero__bio-background {
+	background: linear-gradient(to top, #32323272, #32323272),
+		url("../../../assets/images/hero-bio.jpg");
+}
 
 .hero {
-	position: relative;
 	max-width: 128rem;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
 	margin: 0 auto;
-
-	&__background {
-		max-height: 62rem;
-		overflow: hidden;
-		object-fit: cover;
-		width: 100%;
-		background-size: contain;
+	min-height: 18rem;
+	@include flex(center, center, row);
+	@include media-tablet {
+		height: 46rem;
+	}
+	@include media-desktop {
+		height: 64rem;
 	}
 
-	&__overlay {
+	&__container {
 		width: 100%;
-		height: calc(100% - 0.4rem);
-		position: absolute;
-		top: 0;
-		background-color: $clr-primary-dark;
-		opacity: 50%;
-		z-index: 1;
+		max-width: 102rem;
+		@include flex(flex-start, center, row);
+		max-width: 108rem;
+		max-height: 64rem;
+	}
+	&__shows-container {
+		@include flex(center, flex-start, column);
+		padding: 1.6rem;
+    @include media-desktop{
+      @include flex(center, flex-end,row)
+    }
 	}
 
 	&__content-wrapper {
-		padding: 0;
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		margin: auto 0;
 		color: $clr-primary-light;
-		z-index: 2;
+		z-index: 5;
+	}
+
+	&__heading {
+		color: $clr-primary-light;
 	}
 	&__sub-heading {
+		color: $clr-primary-light;
 		@include font-sub-header;
 	}
+
 }
 
 .hero__soundcloud {
-	// width:100%;
-	max-width: 23rem;
-	// max-width: 25rem;
-	height: auto;
+  padding-top: 1.6rem;
+	width: 100%;
 	@include media-tablet {
+    width: 40rem;
+	}
+	@include media-desktop {
+		padding-left: 4rem;
 	}
 }
 
@@ -176,14 +195,14 @@
 	}
 
 	&__error {
-    position: relative;
-    top: -1.2rem;
-    color: $clr-danger;
-    font-weight: bold;
-    visibility: hidden;
-    &--show{
-      visibility: visible;
-    }
+		position: relative;
+		top: -1.2rem;
+		color: $clr-danger;
+		font-weight: bold;
+		visibility: hidden;
+		&--show {
+			visibility: visible;
+		}
 	}
 	&__comment {
 		min-height: 10rem;

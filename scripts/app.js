@@ -66,9 +66,12 @@ const on = (type, element, handler, all = false) => {
 	// 3. Create a function to check for screen width and toggle 'show' class on the Banner
 
 	function checkScreenSize() {
-		window.innerWidth >= 1380
+		window.innerWidth >= 1480
 			? screenSizeEl.classList.add("screen-size--show")
 			: screenSizeEl.classList.remove("screen-size--show");
+		setTimeout(() => {
+			screenSizeEl.classList.remove("screen-size--show");
+		}, 2000);
 	}
 
 	// 4. Run function on page load to show (or not) the banner according to the initial load resolution.

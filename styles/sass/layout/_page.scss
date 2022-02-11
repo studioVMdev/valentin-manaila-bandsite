@@ -1,33 +1,32 @@
 @use "../utils/" as *;
 
-.hero__content-wrapper,
-.shows__container,
-.about__container,
-.gallery__container,
-.comments__container,
-.footer__container {
-  padding: 0 1.6rem 1.6rem 1.6rem;
-  @include media-tablet {
-    padding: 0 2.4rem 2.4rem 2.4rem;
-	}
-	@include media-desktop {
-    padding: 0 3.6rem 3.6rem 3.6rem;
-	}
-}
-
 .nav__container,
 .hero__container,
-.shows__container,
 .about__container,
 .comments__container,
-.gallery__container ,
+.shows__container,
+.gallery__container,
 .footer__container{
 	max-width: 102rem;
 	margin: 0 auto;
+	padding: 0 1.6rem;
 	@include media-tablet {
-		@include media-desktop {
-		}
+    padding: 0 2.4rem;
 	}
+	@include media-desktop {
+    padding: 0 3.6rem;
+	}
+}
+.about__container,
+.comments__container,
+.shows__container,
+.gallery__container,
+.footer__container,{
+padding-bottom: 1.6rem;
+	@include media-tablet {
+padding-bottom: 2.4rem;	}
+	@include media-desktop {
+padding-bottom: 3.6rem;	}
 }
 
 .screen-size {

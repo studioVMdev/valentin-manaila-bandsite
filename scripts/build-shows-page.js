@@ -1,40 +1,5 @@
 "use strict";
 
-// (function () {
-const showsData = [
-	{
-		date: "Mon Sept 06 2021",
-		venue: "Ronald Lane ",
-		location: "San Francisco, CA",
-	},
-	{
-		date: "Tue Sept 21 2021",
-		venue: "Pier 3 East",
-		location: "San Francisco, CA",
-	},
-	{
-		date: "Fri Oct 15 2021",
-		venue: "View Lounge",
-		location: "San Francisco, CA",
-	},
-	{
-		date: "Sat Nov 06 2021",
-		venue: "Hyatt Agency",
-		location: "San Francisco, CA",
-	},
-	{
-		date: "Fri Nov 26 2021",
-		venue: "Moscow Center",
-		location: "San Francisco, CA",
-	},
-
-	{
-		date: "Wed Dec 15 2021",
-		venue: "Press Club",
-		location: "San Francisco, CA",
-	},
-];
-
 const loadShows = (data) => {
 	let showsWrapperEl = document.querySelector(".shows__wrapper");
 
@@ -44,10 +9,11 @@ const loadShows = (data) => {
 		const show = data[i];
 
 		const showEl = create("div", "show", showsWrapperEl);
+		showEl.setAttribute("data-id", show.id);
 		showEl.addEventListener("click", () => {
 			showEl.classList.toggle("show--active");
 		});
-		console.log("🚀 ~ loadShows ~ showEl", showEl);
+		// console.log("🚀 ~ loadShows ~ showEl", showEl);
 
 		//First Cell - DATE
 		const dateWrapperEl = create("div", ["show__wrapper", "date__wrapper"]);
@@ -119,5 +85,5 @@ const loadShows = (data) => {
 	} //FOR LOOP ENDS HERE
 };
 
-loadShows(showsData);
-// })();
+//getShows from database using a GET HTTP request then pass the data to loadShows to paint to UI
+getShows("http://localhost:3000/shows").then((data) => loadShows(data));

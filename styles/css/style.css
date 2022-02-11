@@ -121,45 +121,66 @@ p,
   }
 }
 
-.hero__content-wrapper,
-.shows__container,
-.about__container,
-.gallery__container,
-.comments__container,
-.footer__container {
-  padding: 0 1.6rem 1.6rem 1.6rem;
-}
-@media only screen and (min-width: 768px) {
-  .hero__content-wrapper,
-.shows__container,
-.about__container,
-.gallery__container,
-.comments__container,
-.footer__container {
-    padding: 0 2.4rem 2.4rem 2.4rem;
-  }
-}
-@media only screen and (min-width: 1280px) {
-  .hero__content-wrapper,
-.shows__container,
-.about__container,
-.gallery__container,
-.comments__container,
-.footer__container {
-    padding: 0 3.6rem 3.6rem 3.6rem;
-  }
-}
-
 .nav__container,
 .hero__container,
-.shows__container,
 .about__container,
 .comments__container,
+.shows__container,
 .gallery__container,
 .footer__container {
   max-width: 102rem;
   margin: 0 auto;
+  padding: 0 1.6rem;
 }
+@media only screen and (min-width: 768px) {
+  .nav__container,
+.hero__container,
+.about__container,
+.comments__container,
+.shows__container,
+.gallery__container,
+.footer__container {
+    padding: 0 2.4rem;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .nav__container,
+.hero__container,
+.about__container,
+.comments__container,
+.shows__container,
+.gallery__container,
+.footer__container {
+    padding: 0 3.6rem;
+  }
+}
+
+.about__container,
+.comments__container,
+.shows__container,
+.gallery__container,
+.footer__container {
+  padding-bottom: 1.6rem;
+}
+@media only screen and (min-width: 768px) {
+  .about__container,
+.comments__container,
+.shows__container,
+.gallery__container,
+.footer__container {
+    padding-bottom: 2.4rem;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .about__container,
+.comments__container,
+.shows__container,
+.gallery__container,
+.footer__container {
+    padding-bottom: 3.6rem;
+  }
+}
+
 .screen-size {
   position: fixed;
   background-color: yellow;
@@ -473,37 +494,70 @@ p,
   border: 2px solid #afafaf;
 }
 
+.hero__shows-background {
+  background: linear-gradient(to top, #32323272, #32323272), url("../../../assets/images/hero-shows.jpg");
+}
+
+.hero__bio-background {
+  background: linear-gradient(to top, #32323272, #32323272), url("../../../assets/images/hero-bio.jpg");
+}
+
 .hero {
-  position: relative;
   max-width: 128rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   margin: 0 auto;
+  min-height: 18rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-.hero__background {
-  max-height: 62rem;
-  overflow: hidden;
-  object-fit: cover;
-  width: 100%;
-  background-size: contain;
+@media only screen and (min-width: 768px) {
+  .hero {
+    height: 46rem;
+  }
 }
-.hero__overlay {
+@media only screen and (min-width: 1280px) {
+  .hero {
+    height: 64rem;
+  }
+}
+.hero__container {
   width: 100%;
-  height: calc(100% - 0.4rem);
-  position: absolute;
-  top: 0;
-  background-color: #323232;
-  opacity: 50%;
-  z-index: 1;
+  max-width: 102rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 108rem;
+  max-height: 64rem;
+}
+.hero__shows-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.6rem;
+}
+@media only screen and (min-width: 1280px) {
+  .hero__shows-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+  }
 }
 .hero__content-wrapper {
-  padding: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: auto 0;
   color: #fff;
-  z-index: 2;
+  z-index: 5;
+}
+.hero__heading {
+  color: #fff;
 }
 .hero__sub-heading {
+  color: #fff;
   font-size: 1.5rem;
   line-height: 2.2rem;
   font-family: "AvenirRegular";
@@ -519,9 +573,20 @@ p,
 }
 
 .hero__soundcloud {
-  max-width: 23rem;
-  height: auto;
+  padding-top: 1.6rem;
+  width: 100%;
 }
+@media only screen and (min-width: 768px) {
+  .hero__soundcloud {
+    width: 40rem;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .hero__soundcloud {
+    padding-left: 4rem;
+  }
+}
+
 .about__heading {
   font-size: 2.4rem;
   line-height: 3.2rem;
