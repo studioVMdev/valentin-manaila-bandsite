@@ -1,3 +1,6 @@
+"user strict";
+
+// (function () {
 const commentsData = [
 	{
 		commentImage: "./assets/images/Mohan-muruge.jpg",
@@ -21,51 +24,6 @@ const commentsData = [
 			"I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
 	},
 ];
-
-// DOM manipulation helper functions
-// 1. Create Element (element, classnames, parent, atrivbutes)
-const create = (element, classNames, parentEl, attributesObj) => {
-	let htmlElement = document.createElement(element);
-
-	typeof classNames == "string"
-		? htmlElement.classList.add(classNames)
-		: classNames.forEach((classs) => {
-				htmlElement.classList.add(classs);
-		  });
-
-	parentEl && parentEl.appendChild(htmlElement);
-
-	if (attributesObj) {
-		for (const [attr, val] of Object.entries(attributesObj)) {
-			const htmlAttribute = document.createAttribute(attr);
-			htmlAttribute.value = val;
-			htmlElement.setAttributeNode(htmlAttribute);
-		}
-	}
-	return htmlElement;
-};
-
-// 2. Select Elements
-const select = (element, all = false) => {
-	element = element.trim();
-	if (all) {
-		return [...document.querySelectorAll(element)];
-	} else {
-		return document.querySelector(element);
-	}
-};
-
-// 3. Add Event Listeners to Elements
-const on = (type, element, listener, all = false) => {
-	let selectEl = select(element, all);
-	if (selectEl) {
-		if (all) {
-			selectEl.forEach((e) => e.addEventListener(type, listener));
-		} else {
-			selectEl.addEventListener(type, listener);
-		}
-	}
-};
 
 const loadEventListeners = () => {
 	const formEl = document.getElementById("comments-form");
@@ -93,7 +51,7 @@ const makeCommentObjFromDOMData = () => {
 	const imgSrcVal = select(".form__image").src;
 
 	const dateLong = new Date();
-	const enUSFormatter = new Intl.DateTimeFormat("en-GB");
+	const enUSFormatter = new Intl.DateTimeFormat("en-US");
 	const dateFormatted = enUSFormatter.format(dateLong);
 	const hour = dateLong.getHours();
 	const min = dateLong.getMinutes();
@@ -112,8 +70,8 @@ const makeCommentObjFromDOMData = () => {
 	} else {
 		commentInputEl.classList.remove("form__input--error");
 		commentErrorEl.classList.remove("form__error--show");
-  }
-  
+	}
+
 	if (nameVal && commentVal) {
 		const commentObj = {
 			commentImage: imgSrcVal,
@@ -125,12 +83,10 @@ const makeCommentObjFromDOMData = () => {
 		nameInputEl.value = "";
 		commentInputEl.value = "";
 
-		// console.log(commentObj);
-
 		commentsData.unshift(commentObj);
 		return commentObj;
 	} else {
-		false;
+		return false;
 	}
 };
 
@@ -148,24 +104,17 @@ const makeHtmlComment = (commentObj) => {
 	const commentBodyEl = create("p", "comment__body", commentWrapperEl);
 	commentBodyEl.innerText = commentObj.commentBody;
 
-	// console.log(commentEl);
 	return commentEl;
 };
 
 // Submit Comment
 const submitCommentHandler = (e) => {
-	// console.log("inside submit handler");
-  const commentsListEl = select(".comments__list");
-  
-  // console.log("inside click handler", commentsListEl);
-  
+	const commentsListEl = select(".comments__list");
 	const commentObj = makeCommentObjFromDOMData(e);
 	const commentEl = commentObj && makeHtmlComment(commentObj);
-
-	// console.log("comment el", commentEl);
 	commentEl && commentsListEl.prepend(commentEl);
 };
 
 loadEventListeners();
-
 displayComments(commentsData);
+// })();

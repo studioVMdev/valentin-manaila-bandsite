@@ -468,6 +468,9 @@ p,
 }
 .button:hover {
   cursor: pointer;
+  color: #323232;
+  background-color: #fff;
+  border: 2px solid #afafaf;
 }
 
 .hero {

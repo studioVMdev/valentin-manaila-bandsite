@@ -1,0 +1,6 @@
+{
+	"shows": "/$1",
+	"/:shows/:id/show": "/:shows/:id",
+	"/posts/:category": "/posts?category=:category",
+	"/articles\\?id=:id": "/posts/:id"
+}

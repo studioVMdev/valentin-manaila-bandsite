@@ -15,5 +15,8 @@
     }
     &:hover{
       cursor: pointer;
+      color: $clr-primary-dark;
+      background-color: $clr-primary-light;
+      border: 2px solid $clr-primary-medium;
     }
 	}
