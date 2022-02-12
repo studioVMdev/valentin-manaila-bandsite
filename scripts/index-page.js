@@ -59,8 +59,9 @@ const makeCommentObjFromDOMData = () => {
 	const imgSrcVal = select(".form__image").src;
 
 	const dateLong = new Date();
-	const enUSFormatter = new Intl.DateTimeFormat("en-US");
-	const dateFormatted = enUSFormatter.format(dateLong);
+  const enUSFormatter = new Intl.DateTimeFormat("en-US");
+  const options = { year: "numeric", month: "numeric", day: "numeric" };
+  const dateFormatted = enUSFormatter.format(dateLong, options);
 	const hour = dateLong.getHours();
 	const min = dateLong.getMinutes();
 
