@@ -11,7 +11,7 @@
 // 	},
 // 	{
 // 		commentImage: "https://i.pravatar.cc/150?img=5",
-// 		commentName: "Emilie Beach",
+// 		commentName: "
 // 		commentDate: "01/09/2021",
 // 		commentBody:
 // 			"I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day.",
@@ -29,7 +29,7 @@
 
 let testData = [];
 
-// (function () {
+(function () {
 // ===START of IIFE
 const loadEventListeners = () => {
 	const formEl = document.getElementById("comments-form");
@@ -143,18 +143,25 @@ const submitCommentHandler = (e) => {
 	const commentObj = makeCommentObjFromDOMData(e);
 	console.log(commentObj);
 
-	//--------------------------
 	// Can confirm that the page does not reload due tu form button submit behaviour - I think it's either JSON-server or
+	//--------------------------
 	// testData.push(commentObj)
 	// console.log(testData);
+	//--------------------------
+
+	// No page reload on submit via POST to jsoplaceholder
+	//--------------------------
+	// addComment("https://jsonplaceholder.typicode.com/comments", commentObj).then(
+	//   (data) => {
+	//     console.log(data);
+	//   }
+	// );
 	//--------------------------
 
 	addComment("http://localhost:3000/comments", commentObj).then((data) => {
 		console.log(data);
 	});
 
-	// const commentEl = commentObj && makeHtmlCommentFromDbObject(commentObj);
-	// commentEl && commentsListEl.prepend(commentEl);
 	commentsListEl.prepend(makeHtmlCommentFromDbObject(commentObj));
 };
 
@@ -165,4 +172,4 @@ getComments("http://localhost:3000/comments").then((data) => {
 });
 
 // ===END of IIFE
-// })();
+})();
