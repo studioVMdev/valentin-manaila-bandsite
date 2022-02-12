@@ -45,6 +45,7 @@ const on = (type, element, handler, all = false) => {
 	}
 };
 
+
 (function () {
 	// Create a vertical banner that appears on screen when screen resolution is above a certain width.
 

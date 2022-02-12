@@ -86,4 +86,7 @@ const loadShows = (data) => {
 };
 
 //getShows from database using a GET HTTP request then pass the data to loadShows to paint to UI
-getShows("http://localhost:3000/shows").then((data) => loadShows(data));
+getShows("http://localhost:3000/shows").then((data) => {
+	// console.log(data);
+	loadShows(data);
+});

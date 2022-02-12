@@ -1,63 +1,63 @@
 {
 	"shows": [
 		{
-			"id": 1,
 			"date": "Mon Sept 06 2021",
 			"venue": "Ronald Lane",
-			"location": "San Francisco, CA"
+			"location": "San Francisco, CA",
+			"id": 1
 		},
 		{
-			"id": 2,
 			"date": "Tue Sept 21 2021",
 			"venue": "Pier 3 East",
-			"location": "San Francisco, CA"
+			"location": "San Francisco, CA",
+			"id": 2
 		},
 		{
-			"id": 3,
 			"date": "Fri Oct 15 2021",
 			"venue": "View Lounge",
-			"location": "San Francisco, CA"
+			"location": "San Francisco, CA",
+			"id": 3
 		},
 		{
-			"id": 4,
 			"date": "Sat Nov 06 2021",
 			"venue": "Hyatt Agency",
-			"location": "San Francisco, CA"
+			"location": "San Francisco, CA",
+			"id": 4
 		},
 		{
-			"id": 5,
 			"date": "Fri Nov 26 2021",
 			"venue": "Moscow Center",
-			"location": "San Francisco, CA"
+			"location": "San Francisco, CA",
+			"id": 5
 		},
 		{
-			"id": 6,
 			"date": "Wed Dec 15 2021",
 			"venue": "Press Club",
-			"location": "San Francisco, CA"
+			"location": "San Francisco, CA",
+			"id": 6
 		}
 	],
 	"comments": [
 		{
-			"id": 1,
-			"commentImage": "../assets/Images/Mohan-muruge.jpg",
+			"commentImage": "https://i.pravatar.cc/150?img=8",
 			"commentName": "Conor Walton ",
 			"commentDate": "02/17/2021",
-			"commentInfo": "This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains."
+			"commentBody": "This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.",
+			"id": 1
 		},
 		{
-			"id": 2,
-			"commentImage": "../assets/Images/Mohan-muruge.jpg",
-			"commentName": "Emilie Beach",
-			"commentDate": "01/09/2021",
-			"commentInfo": "I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day."
+			"commentImage": "https://i.pravatar.cc/150?img=7",
+			"commentName": "Conor Walton ",
+			"commentDate": "02/17/2021",
+			"commentBody": "This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.",
+			"id": 3
 		},
 		{
-			"id": 3,
-			"commentImage": "../assets/Images/Mohan-muruge.jpg",
+			"commentImage": "https://i.pravatar.cc/150?img=6",
 			"commentName": "Miles Acosta",
 			"commentDate": "12/20/2020",
-			"commentInfo": "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough."
+			"commentBody": "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
+			"id": 3
 		}
 	]
 }
