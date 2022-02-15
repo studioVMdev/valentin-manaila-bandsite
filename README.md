@@ -35,7 +35,7 @@
 - [](#) Clone this repository
 
 ```shell
-git clone git@github.com:studioVMdev/valentin-manaila-bandsite.git
+git clone -b sprint-2 git@github.com:studioVMdev/valentin-manaila-bandsite.git
 ```
 
 - [](#) Install dependencies in package.json
