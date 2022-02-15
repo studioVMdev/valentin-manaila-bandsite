@@ -238,6 +238,11 @@
 	&__body {
 		width: fit-content;
 	}
+
+  &__controls{
+    @include flex(space-between,center);
+  }
+  
 }
 
 .avatar {

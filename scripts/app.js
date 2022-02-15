@@ -1,5 +1,6 @@
 "use strict";
 
+
 // DOM manipulation helper functions
 // 1. Create Element (element, classnames, parent, atrivbutes)
 const create = (element, classNames, parentEl, attributesObj) => {

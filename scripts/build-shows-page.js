@@ -30,7 +30,9 @@ const loadShows = (data) => {
 			["show__info", "date__info"],
 			dateWrapperEl
 		);
-		dateInfoEl.innerText = show.date;
+		dateInfoEl.innerText = convertUnix(show.date);
+		console.log(show.date);
+		// new Date(Number(show.timestamp)).getDay();
 
 		showEl.appendChild(dateWrapperEl);
 
@@ -48,7 +50,7 @@ const loadShows = (data) => {
 			["show__info", "venue__info"],
 			venueWrapperEl
 		);
-		venueInfoEl.innerText = show.venue;
+		venueInfoEl.innerText = show.place;
 
 		showEl.appendChild(venueWrapperEl);
 
@@ -86,7 +88,8 @@ const loadShows = (data) => {
 };
 
 //getShows from database using a GET HTTP request then pass the data to loadShows to paint to UI
-getShows("http://localhost:3000/shows").then((data) => {
-	// console.log(data);
+getShows(`${baseURL}/showdates?api_key=${HEROKU_API_KEY}`).then((data) => {
+	// https://project-1-api.herokuapp.com/comments?api_key=f357c1dc-0cc7-4355-a393-9ae4e0f1e121
+	console.log(data);
 	loadShows(data);
 });

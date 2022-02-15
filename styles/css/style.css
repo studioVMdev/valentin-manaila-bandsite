@@ -883,6 +883,12 @@ p,
 .comment__body {
   width: fit-content;
 }
+.comment__controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .avatar {
   background-color: #e1e1e1;

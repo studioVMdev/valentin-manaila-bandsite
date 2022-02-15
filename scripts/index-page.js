@@ -1,176 +1,197 @@
 "user strict";
 
-// const commentsData = [
-// 	{
-// 		commentImage: "https://i.pravatar.cc/150?img=3",
-// 		commentName: "Conor Walton ",
-// 		commentDate: "02/17/2021",
-// 		commentBody:
-// 			"This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.",
-// 		id: 1,
-// 	},
-// 	{
-// 		commentImage: "https://i.pravatar.cc/150?img=5",
-// 		commentName: "Emilie Beach",
-// 		commentDate: "01/09/2021",
-// 		commentBody:
-// 			"I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day.",
-// 		id: 2,
-// 	},
-// 	{
-// 		commentImage: "https://i.pravatar.cc/150?img=6",
-// 		commentName: "Miles Acosta",
-// 		commentDate: "12/20/2020",
-// 		commentBody:
-// 			"I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
-// 		id: 3,
-// 	},
-// ];
-
-let testData = [];
-
 (function () {
-// ===START of IIFE
-const loadEventListeners = () => {
-	const formEl = document.getElementById("comments-form");
-	// const formBtn = document.querySelector(".form__button");
-	formEl.addEventListener("submit", (e) => {
-		// formBtn.addEventListener("mouseover", (e) => {
-		e.preventDefault();
-		commentIsValid() && submitCommentHandler(e);
-	});
-};
-
-loadEventListeners();
-
-const displayComments = (data) => {
-	data.forEach((obj) => {
-		const commentEl = makeHtmlCommentFromDbObject(obj);
-		document.querySelector(".comments__list").prepend(commentEl);
-	});
-};
-
-const makeCommentObjFromDOMData = () => {
-	const nameInputEl = select("#form__name");
-	const commentInputEl = select("#form__comment");
-	const nameVal = nameInputEl.value;
-	const commentVal = commentInputEl.value;
-
-	const imgSrcVal = select(".form__image").src;
-
-	const dateLong = new Date();
-  const enUSFormatter = new Intl.DateTimeFormat("en-US");
-  const options = { year: "numeric", month: "numeric", day: "numeric" };
-  const dateFormatted = enUSFormatter.format(dateLong, options);
-	const hour = dateLong.getHours();
-	const min = dateLong.getMinutes();
-
-	console.log("comment is being converted to obj");
-
-	const commentObj = {
-		commentImage: imgSrcVal,
-		commentName: nameVal,
-		commentDate: dateFormatted,
-		commentBody: commentVal,
+	// ===START of IIFE
+	const loadEventListeners = () => {
+		const formEl = document.getElementById("comments-form");
+		// const formBtn = document.querySelector(".form__button");
+		formEl.addEventListener("submit", (e) => {
+			// formBtn.addEventListener("mouseover", (e) => {
+			e.preventDefault();
+			commentIsValid() && handleSubmit(e);
+		});
 	};
 
-	nameInputEl.value = "";
-	commentInputEl.value = "";
-	return commentObj;
-};
+	loadEventListeners();
 
-// Check if both inputs have values
-const commentIsValid = () => {
-	const nameInputEl = select("#form__name");
-	const commentInputEl = select("#form__comment");
-	const nameVal = nameInputEl.value;
-	const commentVal = commentInputEl.value;
-	const nameErrorEl = select(".name-error");
-	const commentErrorEl = select(".comment-error");
+	//& Display comments
+	const displayComments = (dataArr) => {
+		console.log(dataArr, "before sort");
+		const sortedArray = [...dataArr];
+		console.log(sortedArray);
+		sortedArray.sort((a, b) => {
+			console.log(a.timestamp);
+			return a.timestamp - b.timestamp;
+		});
+		console.log(sortedArray, "after sort");
+		sortedArray.forEach((obj) => {
+			const commentEl = makeHtmlCommentFromDbObject(obj);
+			document.querySelector(".comments__list").prepend(commentEl);
+		});
+	};
 
-	if (!nameVal) {
-		nameInputEl.classList.add("form__input--error");
-		nameErrorEl.classList.add("form__error--show");
-		console.log("name input is empty");
-		// return false;
-	} else {
-		nameInputEl.classList.remove("form__input--error");
-		nameErrorEl.classList.remove("form__error--show");
-	}
+	//&
+	const makeCommentObjFromDOMData = () => {
+		const nameInputEl = select("#form__name");
+		const commentInputEl = select("#form__comment");
+		const nameVal = nameInputEl.value;
+		const commentVal = commentInputEl.value;
 
-	if (!commentVal) {
-		commentInputEl.classList.add("form__input--error");
-		commentErrorEl.classList.add("form__error--show");
-		console.log("comment input is empty");
-		// return false;
-	} else {
-		commentInputEl.classList.remove("form__input--error");
-		commentErrorEl.classList.remove("form__error--show");
-	}
+		console.log("comment is being converted to obj");
 
-	if (nameVal && commentVal) {
-		console.log("comment is valid");
-		return true;
-	} else {
-		console.log("comment is invalid");
-		return false;
-	}
-};
+		const commentObj = {
+			name: nameVal,
+			comment: commentVal,
+		};
+		//^ clear input fields
+		nameInputEl.value = "";
+		commentInputEl.value = "";
+		return commentObj;
+	};
 
-//Make HTML Comment function
-const makeHtmlCommentFromDbObject = (commentObj) => {
-	const commentEl = create("div", "comment", null, {
-		"data-id": commentObj.id,
-	});
-	const imgEl = create("img", ["comment__icon", "avatar"], commentEl);
-	imgEl.setAttribute("src", commentObj.commentImage);
-	const commentWrapperEl = create("div", "comment__wrapper", commentEl);
-	const commentHeadEl = create("div", "comment__head", commentWrapperEl);
-	const commentUserNameEl = create("p", "comment__user-name", commentHeadEl);
-	commentUserNameEl.innerText = commentObj.commentName;
-	const commentTimeStampEl = create("p", "comment__time-stamp", commentHeadEl);
-	commentTimeStampEl.innerText = commentObj.commentDate;
-	const commentBodyEl = create("p", "comment__body", commentWrapperEl);
-	commentBodyEl.innerText = commentObj.commentBody;
+	//& Check if both inputs have values
+	const commentIsValid = () => {
+		const nameInputEl = select("#form__name");
+		const commentInputEl = select("#form__comment");
+		const nameVal = nameInputEl.value;
+		const commentVal = commentInputEl.value;
+		const nameErrorEl = select(".name-error");
+		const commentErrorEl = select(".comment-error");
 
-	return commentEl;
-};
+		if (!nameVal) {
+			nameInputEl.classList.add("form__input--error");
+			nameErrorEl.classList.add("form__error--show");
+			console.log("name input is empty");
+			// return false;
+		} else {
+			nameInputEl.classList.remove("form__input--error");
+			nameErrorEl.classList.remove("form__error--show");
+		}
 
-// Submit Comment
-const submitCommentHandler = (e) => {
-	e.preventDefault();
-	const commentsListEl = select(".comments__list");
+		if (!commentVal) {
+			commentInputEl.classList.add("form__input--error");
+			commentErrorEl.classList.add("form__error--show");
+			console.log("comment input is empty");
+			// return false;
+		} else {
+			commentInputEl.classList.remove("form__input--error");
+			commentErrorEl.classList.remove("form__error--show");
+		}
 
-	const commentObj = makeCommentObjFromDOMData(e);
-	console.log(commentObj);
+		if (nameVal && commentVal) {
+			console.log("comment is valid");
+			return true;
+		} else {
+			console.log("comment is invalid");
+			return false;
+		}
+	};
 
-	// Can confirm that the page does not reload due tu form button submit behaviour - I think it's either JSON-server or
-	//--------------------------
-	// testData.push(commentObj)
-	// console.log(testData);
-	//--------------------------
+	//& Make HTML Comment function
+	const makeHtmlCommentFromDbObject = (commentObj, imgSrcVal) => {
+		const commentEl = create("div", "comment", null, {
+			"data-id": commentObj.id,
+		});
+		const imgEl = create("img", ["comment__icon", "avatar"], commentEl);
+		//todo Image Source
+		imgEl.setAttribute(
+			"src",
+			`https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70)}`
+		);
+		const commentWrapperEl = create("div", "comment__wrapper", commentEl);
+		const commentHeadEl = create("div", "comment__head", commentWrapperEl);
+		const commentUserNameEl = create(
+			"p",
+			"comment__user-name",
+			commentHeadEl
+		);
+		commentUserNameEl.innerText = commentObj.name;
+		const commentTimeStampEl = create(
+			"p",
+			"comment__time-stamp",
+			commentHeadEl
+		);
+		commentTimeStampEl.innerText = convertUnix(commentObj.timestamp);
 
-	// No page reload on submit via POST to jsoplaceholder
-	//--------------------------
-	// addComment("https://jsonplaceholder.typicode.com/comments", commentObj).then(
-	//   (data) => {
-	//     console.log(data);
-	//   }
-	// );
-	//--------------------------
+		const commentBodyEl = create("p", "comment__body", commentWrapperEl);
+		commentBodyEl.innerText = commentObj.comment;
 
-	addComment("http://localhost:3000/comments", commentObj).then((data) => {
+		const commentControlsEl = create(
+			"div",
+			"comment__controls",
+			commentWrapperEl
+		);
+
+		const commentLikesEl = create("p", "comment__likes", commentControlsEl);
+		commentLikesEl.innerText = commentObj.likes
+			? `Likes: ${commentObj.likes}`
+			: `Likes: 0`;
+
+		const commentLikeBtn = create(
+			"p",
+			"comment__like-button",
+			commentControlsEl
+		);
+		commentLikeBtn.innerText = "LIKE THIS COMMENT";
+		commentLikeBtn.addEventListener("click", handleLike);
+
+		const commentDeleteBtn = create(
+			"p",
+			"comment__delete-button",
+			commentControlsEl
+		);
+		commentDeleteBtn.innerText = "Delete this comment";
+		commentDeleteBtn.addEventListener("click", handleDelete);
+
+		return commentEl;
+	};
+
+	//! Handle Like
+	const handleLike = (e) => {
+		console.log(e);
+		const commentId =
+			e.target.parentElement.parentElement.parentElement.dataset.id;
+		incrementLike(
+			`${baseURL}/comments/${commentId}/like?api_key=${HEROKU_API_KEY}`
+		).then((data) => {
+			e.target.previousElementSibling.innerText = "Likes: " + data.likes;
+		});
+	};
+
+	//! Handle Delete
+	const handleDelete = (e) => {
+		const commentId =
+			e.target.parentElement.parentElement.parentElement.dataset.id;
+		deleteComment(
+			`${baseURL}/comments/${commentId}?api_key=${HEROKU_API_KEY}`
+		).then((data) => {
+			e.target.parentElement.parentElement.parentElement.remove();
+		});
+	};
+
+	//! Submit Comment
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const commentsListEl = select(".comments__list");
+
+		const commentObj = makeCommentObjFromDOMData(e);
+		console.log(commentObj);
+
+		//& Add comment to server and UI using response
+		addComment(
+			`${baseURL}/comments?api_key=${HEROKU_API_KEY}`,
+			commentObj
+		).then((resObj) => {
+			console.log(resObj, "POST response OBJ");
+			commentsListEl.prepend(makeHtmlCommentFromDbObject(resObj));
+		});
+	};
+
+	//! get Comments from Server on load
+	getComments(`${baseURL}/comments?api_key=${HEROKU_API_KEY}`).then((data) => {
 		console.log(data);
+		displayComments(data);
 	});
 
-	commentsListEl.prepend(makeHtmlCommentFromDbObject(commentObj));
-};
-
-// Get comments on page load from JSON-Server Database and paint to UI.
-getComments("http://localhost:3000/comments").then((data) => {
-	console.log(data);
-	displayComments(data);
-});
-
-// ===END of IIFE
+	// ===END of IIFE
 })();
