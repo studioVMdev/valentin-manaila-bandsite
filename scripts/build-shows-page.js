@@ -13,7 +13,6 @@ const loadShows = (data) => {
 		showEl.addEventListener("click", () => {
 			showEl.classList.toggle("show--active");
 		});
-		// console.log("🚀 ~ loadShows ~ showEl", showEl);
 
 		//First Cell - DATE
 		const dateWrapperEl = create("div", ["show__wrapper", "date__wrapper"]);

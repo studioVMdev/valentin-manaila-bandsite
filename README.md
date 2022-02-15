@@ -4,7 +4,7 @@
 ## __Shows Section__ 
 - Shows are retrieved from local db.json and rendered to UI using Javascript.
 - The Id retrieved from the database is assigned to the show div wrapper using a __data-__ attribute.
-- This allows for event listeners to be added to it's children, most importantly for pairing the buy ticket button wih the actual ticket in the database.
+- This allows for event listeners to be added to it's children, most importantly for pairing the buy ticket button with the actual ticket in the database.
 
 ## __Comments Section__
 1. Comments are retrieved from local db.json, given their unique id using __data-__ attribute and rendered to UI.
@@ -35,7 +35,7 @@
 - [](#) Clone this repository
 
 ```shell
-git clone git@github.com:studioVMdev/valentin-manaila-bandsite.git
+git clone -b sprint-2 git@github.com:studioVMdev/valentin-manaila-bandsite.git
 ```
 
 - [](#) Install dependencies in package.json
