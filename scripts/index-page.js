@@ -30,7 +30,7 @@
 		});
 	};
 
-	//&
+	//& Grab values from input fields
 	const makeCommentObjFromDOMData = () => {
 		const nameInputEl = select("#form__name");
 		const commentInputEl = select("#form__comment");
@@ -111,7 +111,7 @@
 			"comment__time-stamp",
 			commentHeadEl
 		);
-		commentTimeStampEl.innerText = convertUnix(commentObj.timestamp);
+		commentTimeStampEl.innerText = convertUnixComments(commentObj.timestamp);
 
 		const commentBodyEl = create("p", "comment__body", commentWrapperEl);
 		commentBodyEl.innerText = commentObj.comment;
@@ -122,25 +122,34 @@
 			commentWrapperEl
 		);
 
-		const commentLikesEl = create("p", "comment__likes", commentControlsEl);
-		commentLikesEl.innerText = commentObj.likes
-			? `Likes: ${commentObj.likes}`
-			: `Likes: 0`;
+		const likesWrapper = create(
+			"div",
+			"comment__likes-wrapper",
+			commentControlsEl
+		);
 
 		const commentLikeBtn = create(
 			"p",
-			"comment__like-button",
-			commentControlsEl
+			["comment__like-button", "fa-solid", "fa-heart"],
+			likesWrapper
 		);
-		commentLikeBtn.innerText = "LIKE THIS COMMENT";
 		commentLikeBtn.addEventListener("click", handleLike);
+
+		const commentLikesCount = create(
+			"p",
+			"comment__likes-count",
+			likesWrapper
+		);
+		commentLikesCount.innerText = commentObj.likes
+			? `${commentObj.likes}`
+			: ` 0`;
 
 		const commentDeleteBtn = create(
 			"p",
-			"comment__delete-button",
+			["comment__delete-button", "fa-solid", "fa-trash-can"],
 			commentControlsEl
 		);
-		commentDeleteBtn.innerText = "Delete this comment";
+		// commentDeleteBtn.innerText = "Delete this comment";
 		commentDeleteBtn.addEventListener("click", handleDelete);
 
 		return commentEl;
@@ -148,13 +157,13 @@
 
 	//! Handle Like
 	const handleLike = (e) => {
-		console.log(e);
 		const commentId =
-			e.target.parentElement.parentElement.parentElement.dataset.id;
+			e.target.parentElement.parentElement.parentElement.parentElement
+				.dataset.id;
 		incrementLike(
 			`${baseURL}/comments/${commentId}/like?api_key=${HEROKU_API_KEY}`
 		).then((data) => {
-			e.target.previousElementSibling.innerText = "Likes: " + data.likes;
+			e.target.nextElementSibling.innerText = data.likes;
 		});
 	};
 
@@ -162,6 +171,7 @@
 	const handleDelete = (e) => {
 		const commentId =
 			e.target.parentElement.parentElement.parentElement.dataset.id;
+		console.log(commentId, "commentID");
 		deleteComment(
 			`${baseURL}/comments/${commentId}?api_key=${HEROKU_API_KEY}`
 		).then((data) => {

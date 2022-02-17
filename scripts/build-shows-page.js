@@ -30,7 +30,7 @@ const loadShows = (data) => {
 			["show__info", "date__info"],
 			dateWrapperEl
 		);
-		dateInfoEl.innerText = convertUnix(show.date);
+    dateInfoEl.innerText = convertUnixShows(show.date);
 		console.log(show.date);
 		// new Date(Number(show.timestamp)).getDay();
 

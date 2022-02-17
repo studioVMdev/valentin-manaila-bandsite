@@ -847,8 +847,8 @@ p,
 .comment {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding: 1.6rem 0;
   border-bottom: 1px solid #afafaf;
 }
@@ -888,6 +888,31 @@ p,
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+.comment__likes-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.comment__likes-count {
+  font-size: 1.5rem;
+  color: #afafaf;
+  padding-left: 0.3rem;
+}
+.comment__like-button {
+  font-size: 1.5rem;
+}
+.comment__like-button:hover {
+  color: #d22d2d;
+}
+.comment__delete-button {
+  font-size: 1.5rem;
+  color: #d22d2d;
+  color: #afafaf;
+}
+.comment__delete-button:hover {
+  color: #d22d2d;
 }
 
 .avatar {
