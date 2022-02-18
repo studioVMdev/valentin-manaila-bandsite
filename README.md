@@ -1,6 +1,6 @@
 # Getting Started
 
-## The site uses [JSON-Server](https://github.com/typicode/json-server) to serve a local db.json file as a database. I employed a functional approach to writing the code, using clearly defined functions that return the same output given the same input.
+## I employed a functional approach to writing the code, using clearly defined functions that return the same output given the same input.
 ## __Shows Section__ 
 - Shows are retrieved from local db.json and rendered to UI using Javascript.
 - The Id retrieved from the database is assigned to the show div wrapper using a __data-__ attribute.
@@ -35,18 +35,7 @@
 - [](#) Clone this repository
 
 ```shell
-git clone git@github.com:studioVMdev/valentin-manaila-bandsite.git
+git clone -b sprint-3-classes git@github.com:studioVMdev/valentin-manaila-bandsite.git
 ```
-
-- [](#) Install dependencies in package.json
-```shell
-npm install
-```
-
-- [](#) Start JSON-Server on port 3000 and watch database
-```shell 
-json-server --watch --port 3000 ./database/db.json
-```
-
 
 ---
