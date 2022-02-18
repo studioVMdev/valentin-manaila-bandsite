@@ -2,51 +2,13 @@
 
 (function () {
 	// ===START of IIFE
+	const api = new API();
 	const loadEventListeners = () => {
 		const formEl = document.getElementById("comments-form");
-		// const formBtn = document.querySelector(".form__button");
 		formEl.addEventListener("submit", (e) => {
-			// formBtn.addEventListener("mouseover", (e) => {
 			e.preventDefault();
-			commentIsValid() && handleSubmit(e);
+			commentIsValid() && ui.handleSubmit(e);
 		});
-	};
-
-	loadEventListeners();
-
-	//& Display comments
-	const displayComments = (dataArr) => {
-		console.log(dataArr, "before sort");
-		const sortedArray = [...dataArr];
-		console.log(sortedArray);
-		sortedArray.sort((a, b) => {
-			console.log(a.timestamp);
-			return a.timestamp - b.timestamp;
-		});
-		console.log(sortedArray, "after sort");
-		sortedArray.forEach((obj) => {
-			const commentEl = makeHtmlCommentFromDbObject(obj);
-			document.querySelector(".comments__list").prepend(commentEl);
-		});
-	};
-
-	//& Grab values from input fields
-	const makeCommentObjFromDOMData = () => {
-		const nameInputEl = select("#form__name");
-		const commentInputEl = select("#form__comment");
-		const nameVal = nameInputEl.value;
-		const commentVal = commentInputEl.value;
-
-		console.log("comment is being converted to obj");
-
-		const commentObj = {
-			name: nameVal,
-			comment: commentVal,
-		};
-		//^ clear input fields
-		nameInputEl.value = "";
-		commentInputEl.value = "";
-		return commentObj;
 	};
 
 	//& Check if both inputs have values
@@ -87,121 +49,156 @@
 		}
 	};
 
-	//& Make HTML Comment function
-	const makeHtmlCommentFromDbObject = (commentObj, imgSrcVal) => {
-		const commentEl = create("div", "comment", null, {
-			"data-id": commentObj.id,
-		});
-		const imgEl = create("img", ["comment__icon", "avatar"], commentEl);
-		//todo Image Source
-		imgEl.setAttribute(
-			"src",
-			`https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70)}`
-		);
-		const commentWrapperEl = create("div", "comment__wrapper", commentEl);
-		const commentHeadEl = create("div", "comment__head", commentWrapperEl);
-		const commentUserNameEl = create(
-			"p",
-			"comment__user-name",
-			commentHeadEl
-		);
-		commentUserNameEl.innerText = commentObj.name;
-		const commentTimeStampEl = create(
-			"p",
-			"comment__time-stamp",
-			commentHeadEl
-		);
-		commentTimeStampEl.innerText = convertUnixComments(commentObj.timestamp);
+	loadEventListeners();
 
-		const commentBodyEl = create("p", "comment__body", commentWrapperEl);
-		commentBodyEl.innerText = commentObj.comment;
+	//! Comment class definition
+	class Comment {
+		constructor(commentObj) {
+			this.commentObj = commentObj;
+		}
 
-		const commentControlsEl = create(
-			"div",
-			"comment__controls",
-			commentWrapperEl
-		);
+		render = () => {
+			const commentEl = create("div", "comment", null, {
+				"data-id": this.commentObj.id,
+			});
+			const imgEl = create("img", ["comment__icon", "avatar"], commentEl);
+			//todo Image Source
+			imgEl.setAttribute(
+				"src",
+				`https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70)}`
+			);
+			const commentWrapperEl = create("div", "comment__wrapper", commentEl);
+			const commentHeadEl = create("div", "comment__head", commentWrapperEl);
+			const commentUserNameEl = create(
+				"p",
+				"comment__user-name",
+				commentHeadEl
+			);
+			commentUserNameEl.innerText = this.commentObj.name;
+			const commentTimeStampEl = create(
+				"p",
+				"comment__time-stamp",
+				commentHeadEl
+			);
+			commentTimeStampEl.innerText = api.convertUnixComments(
+				this.commentObj.timestamp
+			);
 
-		const likesWrapper = create(
-			"div",
-			"comment__likes-wrapper",
-			commentControlsEl
-		);
+			const commentBodyEl = create("p", "comment__body", commentWrapperEl);
+			commentBodyEl.innerText = this.commentObj.comment;
 
-		const commentLikeBtn = create(
-      "img",
-      ["comment__like-button"],
-      likesWrapper, { 'src': '/assets/icons/SVG/icon-like.svg' }
-		);
-    commentLikeBtn.addEventListener("click", handleLike);
+			const commentControlsEl = create(
+				"div",
+				"comment__controls",
+				commentWrapperEl
+			);
 
+			const likesWrapper = create(
+				"div",
+				"comment__likes-wrapper",
+				commentControlsEl
+			);
 
-		const commentLikesCount = create(
-			"p",
-			"comment__likes-count",
-			likesWrapper
-		);
-		commentLikesCount.innerText = commentObj.likes
-			? `${commentObj.likes}`
-			: ` 0`;
+			const commentLikeBtn = create(
+				"img",
+				["comment__like-button"],
+				likesWrapper,
+				{ src: "/assets/icons/SVG/icon-like.svg" }
+			);
+			commentLikeBtn.addEventListener("click", this.handleLike);
 
-		const commentDeleteBtn = create(
-      "img",
-			["comment__delete-button", "fa-solid", "fa-trash-can"],
-      commentControlsEl, { src: '/assets/icons/SVG/icon-delete.svg' }
-    );
-		commentDeleteBtn.addEventListener("click", handleDelete);
+			const commentLikesCount = create(
+				"p",
+				"comment__likes-count",
+				likesWrapper
+			);
+			commentLikesCount.innerText = this.commentObj.likes
+				? `${this.commentObj.likes}`
+				: ` 0`;
 
-		return commentEl;
-	};
+			const commentDeleteBtn = create(
+				"img",
+				["comment__delete-button", "fa-solid", "fa-trash-can"],
+				commentControlsEl,
+				{ src: "/assets/icons/SVG/icon-delete.svg" }
+			);
+			commentDeleteBtn.addEventListener("click", this.handleDelete);
 
-	//! Handle Like
-	const handleLike = (e) => {
-		const commentId =
-			e.target.parentElement.parentElement.parentElement.parentElement
-				.dataset.id;
-		incrementLike(
-			`${baseURL}/comments/${commentId}/like?api_key=${HEROKU_API_KEY}`
-		).then((data) => {
-			e.target.nextElementSibling.innerText = data.likes;
-		});
-	};
+			return commentEl;
+		};
 
-	//! Handle Delete
-	const handleDelete = (e) => {
-		const commentId =
-			e.target.parentElement.parentElement.parentElement.dataset.id;
-		console.log(commentId, "commentID");
-		deleteComment(
-			`${baseURL}/comments/${commentId}?api_key=${HEROKU_API_KEY}`
-		).then((data) => {
-			e.target.parentElement.parentElement.parentElement.remove();
-		});
-	};
+		//! Handle Delete
+		handleDelete(e) {
+			const commentId =
+				e.target.parentElement.parentElement.parentElement.dataset.id;
+			api.deleteComment(commentId).then((data) => {
+				e.target.parentElement.parentElement.parentElement.remove();
+			});
+		}
+		//! Handle Like
+		handleLike = (e) => {
+			const commentId =
+				e.target.parentElement.parentElement.parentElement.parentElement
+					.dataset.id;
+			api.incrementLike(commentId).then((data) => {
+				e.target.nextElementSibling.innerText = data.likes;
+			});
+		};
+	}
 
-	//! Submit Comment
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		const commentsListEl = select(".comments__list");
+	//! UI class definition
+	class UI {
+		constructor() {
+			this.htmlCommentList = document.querySelector(".comments__list");
+		}
 
-		const commentObj = makeCommentObjFromDOMData(e);
-		console.log(commentObj);
+		//& Display Comments
+		displayComments = (dataArr) => {
+			const sortedArray = [...dataArr];
+			sortedArray.sort((a, b) => {
+				return a.timestamp - b.timestamp;
+			});
 
-		//& Add comment to server and UI using response
-		addComment(
-			`${baseURL}/comments?api_key=${HEROKU_API_KEY}`,
-			commentObj
-		).then((resObj) => {
-			console.log(resObj, "POST response OBJ");
-			commentsListEl.prepend(makeHtmlCommentFromDbObject(resObj));
-		});
-	};
+			sortedArray.forEach((obj) => {
+				const comment = new Comment(obj);
+				this.htmlCommentList.prepend(comment.render());
+			});
+		};
+
+		//& Grab values from input fields
+		getCommentValues = (e) => {
+			console.log(e);
+			const nameInputEl = select("#form__name");
+			const commentInputEl = select("#form__comment");
+			const nameVal = nameInputEl.value;
+			const commentVal = commentInputEl.value;
+			const commentObj = {
+				name: nameVal,
+				comment: commentVal,
+			};
+
+			// //^ clear input fields
+			nameInputEl.value = "";
+			commentInputEl.value = "";
+			return commentObj;
+		};
+		//& Handle Submit
+		handleSubmit = (e) => {
+			e.preventDefault();
+			const commentsListEl = select(".comments__list");
+			const commentObj = ui.getCommentValues(e);
+
+			//^ Add comment to server and UI using response
+			api.addComment(commentObj).then((resObj) => {
+				console.log(resObj, "response object");
+				const comment = new Comment(resObj);
+				commentsListEl.prepend(comment.render());
+			});
+		};
+	}
 
 	//! get Comments from Server on load
-	getComments(`${baseURL}/comments?api_key=${HEROKU_API_KEY}`).then((data) => {
-		console.log(data);
-		displayComments(data);
-	});
-
+	api.getComments().then((data) => ui.displayComments(data));
+	const ui = new UI();
 	// ===END of IIFE
 })();
