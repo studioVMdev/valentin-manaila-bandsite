@@ -1,4 +1,4 @@
-class API {
+export default class API {
 	constructor() {
 		this.baseURL = "https://project-1-api.herokuapp.com";
 		this.HEROKU_API_KEY = "092536a-5fe5-4586-9acf-ed88b46bc912";

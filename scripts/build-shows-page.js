@@ -1,5 +1,7 @@
 "use strict";
 
+import API from './API.mjs';
+
 const loadShows = (data) => {
 	let showsWrapperEl = document.querySelector(".shows__wrapper");
 	let shows = [];
@@ -88,3 +90,4 @@ const loadShows = (data) => {
 
 const api = new API();
 api.getShows().then((data) => loadShows(data));
+

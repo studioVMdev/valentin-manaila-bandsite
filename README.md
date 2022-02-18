@@ -1,29 +1,24 @@
 # Getting Started
 
-## I employed a functional approach to writing the code, using clearly defined functions that return the same output given the same input.
+## The app is refactored using OOP paradigm and JS modules.
 ## __Shows Section__ 
-- Shows are retrieved from local db.json and rendered to UI using Javascript.
+- Shows are retrieved from the server and rendered to UI using Javascript.
 - The Id retrieved from the database is assigned to the show div wrapper using a __data-__ attribute.
-- This allows for event listeners to be added to it's children, most importantly for pairing the buy ticket button with the actual ticket in the database.
+- It allows all children event listeners to have access to this.
 
 ## __Comments Section__
-1. Comments are retrieved from local db.json, given their unique id using __data-__ attribute and rendered to UI.
+1. Comments are retrieved from the server, given their unique id using __data-__ attribute and rendered to UI.
 2. New comment is validated in the front end on button press then:
       - An object is created using the comment values and timestamp. 
-      - Object is submitted via POST method to db.json.
+      - Object is submitted via POST method.
       - The POST response contains a unique id from the database.
       - The response is packaged into a new HTML comment with a unique id.
       - The HTML comment is prepended to the list of comments on the UI so only the new post is added to the UI not the entire content of the database.
+3. Comments are deleted on by retrieving the id of the comment and sending a DELETE request. Only the deleted item is removed from the UI.
+4. Comments are liked by retrieving the id of the comment and sending a PUT request. The response is used to update the like counter of that particular comment.
 ## __Known Issues__
-
-- GET - works as intended on page load and retrieves the comments.
-- POST - on comment submit to JSON-server, the page refreshes.
-- DELETE method also refreshes the page.
-- e.preventDefault() prevents as intended. I was able to confirm using an array of objects in js file.
-- I was able to POST to JSON Placeholder. There is no page reload on submit therefore I believe it is a JSON-Server issue.
-
+- None.
 ## __Next Steps__
-- Implement delete functionality - straightforward using the unique id of each comment.
 - Implement edit functionality: 
     - Retrieve the comment from db using id.
     - Populate fields using retrieved data.
@@ -35,7 +30,6 @@
 - [](#) Clone this repository
 
 ```shell
-git clone -b sprint-3-classes git@github.com:studioVMdev/valentin-manaila-bandsite.git
+git clone -b sprint-4 git@github.com:studioVMdev/valentin-manaila-bandsite.git
 ```
-
 ---
