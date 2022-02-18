@@ -10,6 +10,8 @@ const getShows = (url) => {
 	});
 };
 
+
+
 const getComments = (url) => {
 	return new Promise((resolve, reject) => {
 		fetch(url)

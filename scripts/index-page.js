@@ -129,11 +129,12 @@
 		);
 
 		const commentLikeBtn = create(
-			"p",
-			["comment__like-button", "fa-solid", "fa-heart"],
-			likesWrapper
+      "img",
+      ["comment__like-button"],
+      likesWrapper, { 'src': '/assets/icons/SVG/icon-like.svg' }
 		);
-		commentLikeBtn.addEventListener("click", handleLike);
+    commentLikeBtn.addEventListener("click", handleLike);
+
 
 		const commentLikesCount = create(
 			"p",
@@ -145,11 +146,10 @@
 			: ` 0`;
 
 		const commentDeleteBtn = create(
-			"p",
+      "img",
 			["comment__delete-button", "fa-solid", "fa-trash-can"],
-			commentControlsEl
-		);
-		// commentDeleteBtn.innerText = "Delete this comment";
+      commentControlsEl, { src: '/assets/icons/SVG/icon-delete.svg' }
+    );
 		commentDeleteBtn.addEventListener("click", handleDelete);
 
 		return commentEl;

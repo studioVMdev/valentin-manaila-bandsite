@@ -239,28 +239,30 @@
 	}
 
 	&__controls {
-		@include flex(space-between, center, row);
+    @include flex(space-between, center, row);
 	}
   &__likes-wrapper{
     @include flex;
   }
 	&__likes-count {
     font-size: 1.5rem;
-		color: $clr-primary-medium;
+		fill: $clr-primary-medium;
     padding-left: 0.3rem;
 	}
 	&__like-button {
 		font-size: 1.5rem;
 		&:hover {
-			color: $clr-danger;
+			fill: $clr-danger;
+      transform: scale(1.1);
 		}
 	}
 	&__delete-button {
-		font-size: 1.5rem;
-		color: $clr-danger;
-		color: $clr-primary-medium;
+    font-size: 1.5rem;
+    display: none;
+    fill: $clr-primary-medium;
 		&:hover {
-			color: $clr-danger;
+      transform: scale(1.1);
+			fill: $clr-danger;
 		}
 	}
 }
