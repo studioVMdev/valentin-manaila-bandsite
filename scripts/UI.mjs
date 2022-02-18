@@ -1,5 +1,5 @@
 import Comment from "./Comment.mjs";
-
+import API from "./API.mjs";
 export default class UI {
 	constructor() {
 		this.htmlCommentList = document.querySelector(".comments__list");
@@ -37,9 +37,11 @@ export default class UI {
 	};
 	//& Handle Submit
 	handleSubmit = (e) => {
+		const comment = new Comment();
+		const api = new API();
 		e.preventDefault();
 		const commentsListEl = select(".comments__list");
-		const commentObj = ui.getCommentValues(e);
+		const commentObj = this.getCommentValues(e);
 
 		//^ Add comment to server and UI using response
 		api.addComment(commentObj).then((resObj) => {

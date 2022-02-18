@@ -1,13 +1,12 @@
 import API from "./API.mjs";
 
+const api = new API();
 export default class Comment {
 	constructor(commentObj) {
 		this.commentObj = commentObj;
 	}
 
 	render = () => {
-		const api = new API();
-
 		const commentEl = create("div", "comment", null, {
 			"data-id": this.commentObj.id,
 		});
