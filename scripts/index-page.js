@@ -59,12 +59,6 @@ const api = new API();
 	loadEventListeners();
 
 	//! get Comments from Server on load
-
-	// api.getComments().then((data) => {
-	// 	console.log(data);
-	// 	ui.displayComments(data);
-	// });
-
 	api.getComments().then((data) => ui.displayComments(data));
 
 	// ===END of IIFE

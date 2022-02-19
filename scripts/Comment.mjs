@@ -77,13 +77,13 @@ export default class Comment {
 	};
 
 	//! Handle Delete
-	handleDelete(e) {
+	handleDelete = (e) => {
 		const commentId =
 			e.target.parentElement.parentElement.parentElement.dataset.id;
 		api.deleteComment(commentId).then((data) => {
 			e.target.parentElement.parentElement.parentElement.remove();
 		});
-	}
+	};
 	//! Handle Like
 	handleLike = (e) => {
 		const commentId =

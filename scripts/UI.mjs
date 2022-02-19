@@ -35,6 +35,7 @@ export default class UI {
 		commentInputEl.value = "";
 		return commentObj;
 	};
+
 	//& Handle Submit
 	handleSubmit = (e) => {
 		const comment = new Comment();
