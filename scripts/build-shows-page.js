@@ -1,8 +1,9 @@
 "use strict";
 
+import API from './API.mjs';
+
 const loadShows = (data) => {
 	let showsWrapperEl = document.querySelector(".shows__wrapper");
-
 	let shows = [];
 
 	for (let i = 0; i < data.length; i++) {
@@ -30,7 +31,9 @@ const loadShows = (data) => {
 			["show__info", "date__info"],
 			dateWrapperEl
 		);
-		dateInfoEl.innerText = show.date;
+		dateInfoEl.innerText = api.convertUnixShows(show.date);
+		console.log(show.date);
+		// new Date(Number(show.timestamp)).getDay();
 
 		showEl.appendChild(dateWrapperEl);
 
@@ -48,7 +51,7 @@ const loadShows = (data) => {
 			["show__info", "venue__info"],
 			venueWrapperEl
 		);
-		venueInfoEl.innerText = show.venue;
+		venueInfoEl.innerText = show.place;
 
 		showEl.appendChild(venueWrapperEl);
 
@@ -85,8 +88,6 @@ const loadShows = (data) => {
 	} //FOR LOOP ENDS HERE
 };
 
-//getShows from database using a GET HTTP request then pass the data to loadShows to paint to UI
-getShows("http://localhost:3000/shows").then((data) => {
-	// console.log(data);
-	loadShows(data);
-});
+const api = new API();
+api.getShows().then((data) => loadShows(data));
+

@@ -1,7 +1,7 @@
 "use strict";
 
 // DOM manipulation helper functions
-// 1. Create Element (element, classnames, parent, atrivbutes)
+// 1. Create Element (element, classnames, parent, atributes)
 const create = (element, classNames, parentEl, attributesObj) => {
 	let htmlElement = document.createElement(element);
 
@@ -44,7 +44,6 @@ const on = (type, element, handler, all = false) => {
 		}
 	}
 };
-
 
 (function () {
 	// Create a vertical banner that appears on screen when screen resolution is above a certain width.

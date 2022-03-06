@@ -36,9 +36,9 @@
 	&__shows-container {
 		@include flex(center, flex-start, column);
 		padding: 1.6rem;
-    @include media-desktop{
-      @include flex(center, flex-end,row)
-    }
+		@include media-desktop {
+			@include flex(center, flex-end, row);
+		}
 	}
 
 	&__content-wrapper {
@@ -53,14 +53,13 @@
 		color: $clr-primary-light;
 		@include font-sub-header;
 	}
-
 }
 
 .hero__soundcloud {
-  padding-top: 1.6rem;
+	padding-top: 1.6rem;
 	width: 100%;
 	@include media-tablet {
-    width: 40rem;
+		width: 40rem;
 	}
 	@include media-desktop {
 		padding-left: 4rem;
@@ -216,7 +215,7 @@
 }
 
 .comment {
-	@include flex;
+	@include flex(flex-start, flex-start, row);
 	padding: 1.6rem 0;
 	border-bottom: 1px solid $clr-primary-medium;
 	&__icon {
@@ -237,6 +236,34 @@
 	}
 	&__body {
 		width: fit-content;
+	}
+
+	&__controls {
+    @include flex(space-between, center, row);
+	}
+  &__likes-wrapper{
+    @include flex;
+  }
+	&__likes-count {
+    font-size: 1.5rem;
+		fill: $clr-primary-medium;
+    padding-left: 0.3rem;
+	}
+	&__like-button {
+		font-size: 1.5rem;
+		&:hover {
+			fill: $clr-danger;
+      transform: scale(1.1);
+		}
+	}
+	&__delete-button {
+    font-size: 1.5rem;
+    display: none;
+    fill: $clr-primary-medium;
+		&:hover {
+      transform: scale(1.1);
+			fill: $clr-danger;
+		}
 	}
 }
 
